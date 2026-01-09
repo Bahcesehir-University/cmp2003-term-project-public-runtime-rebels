@@ -23,7 +23,7 @@ void TripAnalyzer::ingestFile(const string& csvPath) {
         if (!line.empty() && line.back() == '\r') line.pop_back();
         if (line.empty()) continue;
 
-        //check for header "tripid"
+        //check for header "tripID"
         if (line.rfind("TripID", 0) == 0) continue; 
 
         //manual comma scanning
@@ -32,7 +32,7 @@ void TripAnalyzer::ingestFile(const string& csvPath) {
         //we need fields up to time (index 3), but strict validation requires checking for 6 fields (5 commas)
         
         size_t c1 = line.find(',');
-        if (c1 == std::string::npos) continue;
+         if (c1 == std::string::npos) continue;
 
         //validate tripid is numeric to handle dirty data inputs
         if (c1 == 0) continue; 
@@ -154,8 +154,8 @@ vector<SlotCount> TripAnalyzer::topBusySlots(int k) const {
                 if (pq.size() < (size_t)k) {
                     pq.push(sc);
                 } else {
-                    //pq.top() is the worst element.
-                    //if sc is better than worst, replace.
+                    //pq.top() is the worst element
+                    //if sc is better than worst, replace
                     if (comp_greater(sc, pq.top())) {
                         pq.pop();
                         pq.push(sc);
